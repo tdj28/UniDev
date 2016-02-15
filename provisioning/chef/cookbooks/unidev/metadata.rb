@@ -1,0 +1,10 @@
+name             'unidev'
+maintainer       'YOUR_NAME'
+maintainer_email 'YOUR_EMAIL'
+license          'All rights reserved'
+description      'Installs/Configures devbox'
+long_description 'Installs/Configures devbox'
+version          '0.1.0'
+
+depends 'python'
+depends 'supervisor'
