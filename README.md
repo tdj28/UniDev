@@ -7,30 +7,11 @@
 
 ### Preparing Vagrant
 
-This uses Berks, so you will want to install the chef-dk first and be sure that you don't have any gem Berks interfering:
-
-```
-wget https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/12.04/x86_64/chefdk_0.4.0-1_amd64.deb
-sudo dpkg -i chefdk_0.4.0-1_amd64.deb
-```
-
 Vagrant will be ready as soon as you run:
 
 ```
 vagrant plugin install vagrant-omnibus
 vagrant plugin install vagrant-berkshelf
-```
-
-If you have trouble with berks, you can either point your current paths to the right chef-dk binaries/libs:
-
-```
-eval "$(chef shell-init bash)"
-```
-
-or try uninstalling the gem version:
-
-```
-gem uninstall berkshelf
 ```
 
 This deploy has been tested against vagrant 1.8
