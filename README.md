@@ -5,6 +5,24 @@
 1. Vagrant
 2. Virtualbox
 
+## Running
+
+1. Clone this repo
+2. `cd` into this repo
+3. `vagrant up`
+
+After a period of provisioning, your dev environment will be ready and can be directly accessed at 
+
+http://localhost:8200
+
+if you wish to use the Cloud 9 ACE IDe, or you can login directory by running, from the base directory,
+
+```
+vagrant ssh
+```
+
+There are further ways to access your code within the VM...
+
 ### Preparing Vagrant
 
 Vagrant will be ready as soon as you run:
