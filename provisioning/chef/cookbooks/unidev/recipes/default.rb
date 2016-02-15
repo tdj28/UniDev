@@ -30,6 +30,11 @@ packages = [
 			'npm',
 			'sshfs',
 			'supervisor',
+			'texlive',
+			'texlive-latex-recommended',
+			'texlive-math-extra',
+			'texlive-publishers',
+			'texlive-science',
 			'unzip',
 			'vim'	
 		]

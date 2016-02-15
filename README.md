@@ -25,6 +25,13 @@ There are further ways to access your code within the VM...
 
 ### Preparing Vagrant
 
+You will need to install Chef DK. Please see [ChefDK](https://github.com/chef/chef-dk) for more details
+on how to do so. If necessary, enter the ChefDK shell via
+
+```
+eval "$(chef shell-init bash)"
+```
+
 Vagrant will be ready as soon as you run:
 
 ```
