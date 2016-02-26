@@ -48,6 +48,17 @@ if [ -L /var/run/netns/laptop ]; then
 fi
 sudo ln -s /proc/$pid/ns/net /var/run/netns/laptop
 
+echo "create_intreface verizon_eth0 --> eth1"
+sudo ip link add verizon_eth0 type veth peer name P
+sudo ip link set P netns verizon
+sudo ip netns exec verizon ip link set dev P name eth0
+sudo ip netns exec verizon ip link set eth0 up
+
+echo "connection verizon to docker0"
+sudo brctl addif docker0 verizon_eth0
+sudo ip link set dev verizon_eth0 up
+
+
 echo "create_intreface router_eth1"
 sudo ip link add router_eth1 type veth peer name P
 sudo ip link set P netns router
@@ -88,12 +99,15 @@ sudo ip netns exec router ip link set dev Q name eth0
 sudo ip netns exec router ip link set eth0 up
 
 echo "Add IP info for verizon's eths"
-sudo ip netns exec verizon ip addr add 10.25.1.1/32 dev eth0
+sudo ip netns exec verizon ip addr add 172.17.42.10/16 dev eth0
 sudo ip netns exec verizon ip addr add 10.25.1.1/32 dev eth1
 
 echo "Add route info for verizon's eths"
-sudo ip netns exec verizon ip route add 10.1.1.1/32 dev eth0
+sudo ip netns exec verizon ip route add default via 172.17.42.1
+sudo ip netns exec verizon ip route add 172.17.42.1 dev eth0
 sudo ip netns exec verizon ip route add 10.25.1.65/32 dev eth1
+sudo ip netns exec verizon iptables --table nat \
+    --append POSTROUTING --out-interface eth0 -j MASQUERADE
 
 echo "Add IP info for router's eths"
 sudo ip netns exec router ip addr add 10.25.1.65/16 dev eth0
