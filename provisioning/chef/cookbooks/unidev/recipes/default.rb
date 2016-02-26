@@ -2,7 +2,7 @@
 # Cookbook Name:: devbox
 # Recipe:: default
 #
-# Apache Public License 
+# Apache Public License
 
 execute "apt-get-update-periodic" do
   command "apt-get update"
@@ -15,6 +15,7 @@ end
 
 packages = [
 			'apache2-utils',
+                        'bridge-utils',
 			'build-essential',
 			'curl',
 			'docker.io',
@@ -36,7 +37,7 @@ packages = [
 			'texlive-publishers',
 			'texlive-science',
 			'unzip',
-			'vim'	
+			'vim'
 		]
 
 packages.each do |p|
